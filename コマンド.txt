@@ -1,0 +1,14 @@
+# RTX5090のとき
+nvcc -O3 -arch=sm_120 sincos_bench.cu -o sincosBenchCuda.exe  
+ncu --set full --export SinMandelOverlap.ncu-rep --kernel-name "benchKernel" ./sincosBenchCuda.exe 1 500 0
+ncu --set full --export SinOnly.ncu-rep --kernel-name "benchKernel" ./sincosBenchCuda.exe 2 500 0
+ncu --set full --export MandelOnly.ncu-rep --kernel-name "benchKernel" ./sincosBenchCuda.exe 3 500 0
+ncu --set full --export CosOnly.ncu-rep --kernel-name "benchKernel" ./sincosBenchCuda.exe 4 500 0
+
+# RTX2080Tiのとき
+nvcc -O3 -arch=sm_75 sincos_bench.cu -o sincosBenchCuda.exe  
+ncu --set full --export SinMandelOverlap.ncu-rep --kernel-name "benchKernel" ./sincosBenchCuda.exe 1 500 1
+ncu --set full --export SinOnly.ncu-rep --kernel-name "benchKernel" ./sincosBenchCuda.exe 2 500 1
+ncu --set full --export MandelOnly.ncu-rep --kernel-name "benchKernel" ./sincosBenchCuda.exe 3 500 1
+ncu --set full --export CosOnly.ncu-rep --kernel-name "benchKernel" ./sincosBenchCuda.exe 4 500 1
+
