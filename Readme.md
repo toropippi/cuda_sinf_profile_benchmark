@@ -59,6 +59,25 @@ nvcc -O3 -arch=sm_75 sincos_bench.cu -o sincosBenchCuda
 
 ---
 
+## プロファイリング結果
+
+本リポジトリには、いくつかのGPUで取得したプロファイリング結果（`.ncu-rep`ファイル）が格納されています。
+
+*   `2080Ti_4cycle/`
+*   `5090_4cycle/`
+*   `RTX2080Ti_5cycle/`
+*   `RTX5090_5cycle/`
+
+ディレクトリ名に含まれる `4cycle` と `5cycle` は、マンデルブロ集合の計算の1ステップのスループット（サイクル数）を表しています。
+
+*   **4cycle:** z.x = z.x * z.x - z.y * z.y + c.x として計算
+*   **5cycle:** z.x = z.x * z.x - (z.y * z.y - c.x) として計算
+
+これらの結果をNsight Computeで開くことで、実際のSASSなどが確認できます。
+[GPU命令レベルで読むマンデルブロー集合 ～Nsight ComputeとSASS解説～](https://zenn.dev/toropippi/scraps/ddd8e571df2599)
+
+---
+
 ## 学習ポイント
 
 * `__sinf()` がハードウェアで `MUFU.SIN` 命令に置き換わる仕組み
