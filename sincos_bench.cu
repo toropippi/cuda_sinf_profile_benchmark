@@ -84,7 +84,7 @@ void launch(Mode mode, uint32_t iterations, int device = 0) {
     d_result[0] = 0.0f;
 
     constexpr int THREADS = 1024;
-    constexpr int BLOCKS  = 64;
+    constexpr int BLOCKS  = 1024;
 
     switch (mode) {
         case Mode::SinMandel:
